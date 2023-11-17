@@ -5,10 +5,11 @@ services:
   database:
     image: postgres:${POSTGRES_VERSION:-15}-alpine
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
+      MYSQL_DATABASE: ${DB_NAME:-app}
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: ${DB_NAME:-sqluser}
+      # You can use whatever password you like
+      MYSQL_PASSWORD: ${DB_PASSWORD:-password}
     volumes:
       - database_data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
